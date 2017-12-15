@@ -7,7 +7,9 @@ namespace Parallel_Binary_Search_Tree
         where V : struct
     {
         public Node<K, V> root;
-
+        object locker1 = new object();
+        object locker2 = new object();
+            
         public void Print(Node<K, V> node, int height = 0)
         {
             if (node == null) return;
@@ -27,8 +29,6 @@ namespace Parallel_Binary_Search_Tree
         public void Insert(K key, V value)
         {
             Node<K, V> parent = null;
-            object locker1 = new object();
-            object locker2 = new object();
 
             var current = root;
 
@@ -102,8 +102,6 @@ namespace Parallel_Binary_Search_Tree
         private Node<K, V> SearchNode(K key)
         {
             var current = root;
-            object locker1 = new object();
-            object locker2 = new object();
 
             while (current != null)
             {
@@ -155,8 +153,6 @@ namespace Parallel_Binary_Search_Tree
         public void Delete(K key)
         {
             var delNode = SearchNode(key);
-            object locker1 = new object();
-            object locker2 = new object();
 
             if (delNode == null) return;
 
